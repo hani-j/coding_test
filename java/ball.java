@@ -10,7 +10,7 @@
 // 구슬을 고르는 순서는 고려하지 않습니다.
 // share ≤ balls
 
-import java.lang.Math;
+// import java.lang.Math;
 class Solution {
     public int factorial(int balls, int share) {
         long fact = 1;

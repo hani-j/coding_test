@@ -20,4 +20,4 @@ class Solution {
     }
 }
 
-return IntStream.rangeClosed(1, n).filter(i -> n % i == 0).toArray();
+// return IntStream.rangeClosed(1, n).filter(i -> n % i == 0).toArray();

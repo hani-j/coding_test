@@ -7,7 +7,7 @@
 // 제한사항
 // 2 ≤ my_string 길이 ≤ 5
 // 2 ≤ n ≤ 10
-"my_string"은 영어 대소문자로 이루어져 있습니다.
+// "my_string"은 영어 대소문자로 이루어져 있습니다.
 
 class Solution {
     public String solution(String my_string, int n) {

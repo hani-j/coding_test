@@ -54,7 +54,6 @@ class Solution {
         morse.put("-..-","x");
         morse.put("-.--","y");
         morse.put("--..","z");
-        String answer = "";
         String split[] = letter.split(" ");
         return Arrays.stream(split).map(mo -> morse.get(mo)).collect(Collectors.joining(""));
     }

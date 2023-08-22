@@ -8,7 +8,6 @@
 // 0 ≤ numbers의 원소 ≤ 10,000
 // 2 ≤ numbers의 길이 ≤ 100
 
-import java.util.Arrays;
 class Solution {
     public int solution(int[] numbers) {
         int max = 0;
