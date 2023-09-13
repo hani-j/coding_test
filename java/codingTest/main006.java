@@ -19,5 +19,6 @@ public class main006 {
             }
         }
         System.out.println(count);
+        sc.close();
     }
 }

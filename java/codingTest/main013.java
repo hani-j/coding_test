@@ -18,5 +18,6 @@ public interface main013 {
             que.add(que.poll());
         }
         System.out.println(que.peek());
+        sc.close();
     }
 }

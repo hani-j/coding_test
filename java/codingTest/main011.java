@@ -39,5 +39,6 @@ public class main011 {
         }
         if (result)
             System.out.println(sb.toString());
+        sc.close();
     }
 }
