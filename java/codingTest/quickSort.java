@@ -18,21 +18,21 @@ public class quickSort {
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        quickSort(arr, 0, arr.length-1, K-1);
+        quick_sort(arr, 0, arr.length-1, K-1);
         System.out.println(arr[K-1]);
     }
 
     // 퀵 정렬
-    private static void quickSort(int[] arr, int start, int end, int K) {
+    private static void quick_sort(int[] arr, int start, int end, int K) {
         if (start < end) {
             // pivot 을 중심으로 2개의 집합으로 나누어 정렬
             int pivot = getPivot(arr, start, end);
             if (pivot == K)
                 return ;
             else if (K < pivot)
-                quickSort(arr, start, pivot-1, K);
+                quick_sort(arr, start, pivot-1, K);
             else
-                quickSort(arr, pivot+1, end, K);
+                quick_sort(arr, pivot+1, end, K);
         }
     }
 
