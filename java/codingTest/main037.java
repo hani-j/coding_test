@@ -13,7 +13,7 @@ public class main037 {
         int N = Integer.parseInt(st.nextToken());
 
         int[] array = new int[N + 1];
-        for (int i = 1; i <= N; i++) {
+        for (int i = 2; i <= N; i++) {
             array[i] = i;
         }
         for (int i = 2; i <= Math.sqrt(N); i++) {
