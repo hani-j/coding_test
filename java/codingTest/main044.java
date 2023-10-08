@@ -10,29 +10,6 @@ import java.util.StringTokenizer;
 
 // re
 public class main044 {
-    class cNode {
-        int b;
-        int p;
-        int q;
-
-        public cNode(int b, int p, int q) {
-            super();
-            this.b = b;
-            this.p = p;
-            this.q = q;
-        }
-
-        public int getB() {
-            return b;
-        }
-        public int getP() {
-            return p;
-        }
-        public int getQ() {
-            return q;
-        }
-    }
-    
     static ArrayList<cNode>[] A;
     static long lcm;
     static boolean visited[];
@@ -54,8 +31,8 @@ public class main044 {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            int c = Integer.parseInt(st.nextToken());
-            int d = Integer.parseInt(st.nextToken());
+            int p = Integer.parseInt(st.nextToken());
+            int q = Integer.parseInt(st.nextToken());
             A[a].add(new cNode(b, p, q));
             A[b].add(new cNode(a, p, q));
             lcm *= (p * q / gcd(p, q)); // 최소 공배수는 두 수의 곱을 최대 공약수로 나눈 것
@@ -93,12 +70,26 @@ public class main044 {
         }
     }
 
-    
+    static class cNode {
+        int b;
+        int p;
+        int q;
+
+        public cNode(int b, int p, int q) {
+            super();
+            this.b = b;
+            this.p = p;
+            this.q = q;
+        }
+
+        public int getB() {
+            return b;
+        }
+        public int getP() {
+            return p;
+        }
+        public int getQ() {
+            return q;
+        }
+    }
 }
-
-4 0 1대 1
-4 1 3배 1
-4 2 5배
-4 3 7배
-
-105 최소공배수
