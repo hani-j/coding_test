@@ -38,9 +38,9 @@ public class main044 {
             lcm *= (p * q / gcd(p, q)); // 최소 공배수는 두 수의 곱을 최대 공약수로 나눈 것
         }
 
-        D[0] = lcm;
+        D[0] = lcm; // 최소공배수
         DFS(0);
-        long mgcd = D[0];
+        long mgcd = D[0]; // 
         for (int i = 1; i < N; i++) {
             mgcd = gcd(mgcd, D[i]);
         }
@@ -69,6 +69,11 @@ public class main044 {
             }
         }
     }
+    // D[0] = (105 * 1 / 1)
+    // D[4] = (105 * 1 / 1)
+    // D[1] = (105 * 1 / 3)
+    // D[2] = (105 * 1 / 5)
+    // D[3] = (105 * 1 / 7) 
 
     static class cNode {
         int b;
@@ -93,3 +98,5 @@ public class main044 {
         }
     }
 }
+
+// 4
