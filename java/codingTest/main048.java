@@ -46,14 +46,14 @@ public class main048 {
         }
     }
     public static void DFS(int node) {
-            visited[node] = true;
-            for (int i : A[node]) {
-                if (!visited[i]) {
-                    check[i] = (check[node] + 1 )% 2;
-                    DFS(i);
-                } else if (check[node] == check[i]) {
-                    IsEven = false;
-                }
+        visited[node] = true;
+        for (int i : A[node]) {
+            if (!visited[i]) {
+                check[i] = (check[node] + 1 )% 2;
+                DFS(i);
+            } else if (check[node] == check[i]) {
+                IsEven = false;
             }
         }
+    }
 }
