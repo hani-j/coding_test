@@ -8,38 +8,29 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class stringSort {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        List<Node> arr = new ArrayList<>();
+        // List<Node> arr = new ArrayList<>();
+        Set<String> arr = new HashSet<>();
         for (int i = 0; i < N; i++) {
             String word = br.readLine();
-            arr.add(new Node(word.length(), word));
+            arr.add(word);
         }
-        arr.sort(new Comparator<Node>() {
+        List<String> sortedList = arr.stream().sorted(new Comparator<String>() {
             @Override
-            public int compare(Node a, Node b) {
-                if (a.len == b.len) {
-                    return a.word.compareTo(b.word);
+            public int compare(String a, String b) {
+                if (a.length() == b.length()) {
+                    return a.compareTo(b);
                 }
-                return a.len > b.len ? 1 : -1;
+                return a.length() > b.length() ? 1 : -1;
             }
-        });
-        for (int i = 0; i < N; i++){
-            System.out.println(arr.get(i).word);
-        }
-    }
-
-    static class Node {
-        int len;
-        String word;
-
-        Node(int l, String w) {
-            this.len = l;
-            this.word = w;
-        }
+        }).collect(Collectors.toList());
+        sortedList.stream().forEach(c -> System.out.println(c));
     }
 }
