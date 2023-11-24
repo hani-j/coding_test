@@ -6,6 +6,7 @@ import java.io.OutputStreamWriter;
 import java.util.Scanner;
 import java.util.Stack;
 
+// 16-1 28278
 public class stack2 {
     public static void main(String[] args) throws IOException{
         Scanner sc = new Scanner(System.in);
@@ -41,5 +42,6 @@ public class stack2 {
             }
         }
         bw.flush();
+        sc.close();
     }
 }

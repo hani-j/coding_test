@@ -1,6 +1,5 @@
 package backjoon;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -12,12 +11,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+// 13-8 11651
 public class coordinateSort2 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
-        List<Node> list = new ArrayList();
+        List<Node> list = new ArrayList<Node>();
         
 
         for (int i = 0; i < N; i++) {

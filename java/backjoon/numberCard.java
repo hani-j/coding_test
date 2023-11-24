@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
+// 14-1 10815
 // HashSet.contains 시간복잡도 O(1)
 
 public class numberCard {
