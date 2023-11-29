@@ -18,7 +18,7 @@ public class poketmon {
 
         int N = Integer.parseInt(st.nextToken());        
         int M = Integer.parseInt(st.nextToken());
-        Map<String, Integer> nameMap = new HashMap<>();        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> nameMap = new HashMap<>();        
         Map<Integer, String> numMap = new HashMap<>();
 
         for (int i = 1; i <= N; i++) {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-// 13-1 18870
+// 13-11 18870
 public class coordinateCompression {
     static List<Integer> list;
     static List<Integer> sortList;
