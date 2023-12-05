@@ -9,24 +9,26 @@ public class partition {
     static int[] prime = new int[1000001];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        setPrime();
         int N = Integer.parseInt(br.readLine());
 
-        setPrime();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
             int n = Integer.parseInt(br.readLine());
-            sb.append(getPartitionCount(n) + "\n");
+            sb.append(getPartitionCount(n));
+            if (i != N - 1)
+                sb.append("\n");
         }
-        System.out.print(sb.toString());
+        System.out.println(sb.toString());
     }
 
     static public void setPrime() {
         for (int i = 2; i <= 1000000; i++) {
             prime[i] = i;
         }
-        for (int i = 2; i <= 1000000; i++) {
+        for (int i = 2; i <= Math.sqrt(1000000); i++) {
             if (prime[i] > 0) {
-                for (int j = i * 2; j <= 1000000; j += 2) {
+                for (int j = i * 2; j <= 1000000; j += i) {
                     prime[j] = 0;
                 }
             }
@@ -35,11 +37,11 @@ public class partition {
 
     static public int getPartitionCount(int number) {
         int count = 0;
-        for (int i = 2; i <= number - 2; i++) {
-            if (prime[i] > 0 && prime[number - i] > 0)
+        for (int i = 2; i <= number / 2; i++) {
+            if (prime[i] > 0 && prime[number - i] > 0) {
                 count++;
+            }
         }
-        // System.out.println(count);
         return count;
     }
 }
