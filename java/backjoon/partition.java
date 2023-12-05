@@ -17,7 +17,7 @@ public class partition {
             int n = Integer.parseInt(br.readLine());
             sb.append(getPartitionCount(n) + "\n");
         }
-        System.out.println(sb.toString());
+        System.out.print(sb.toString());
     }
 
     static public void setPrime() {
@@ -39,7 +39,7 @@ public class partition {
             if (prime[i] > 0 && prime[number - i] > 0)
                 count++;
         }
-        System.out.println(count);
+        // System.out.println(count);
         return count;
     }
 }
