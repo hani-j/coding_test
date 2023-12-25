@@ -20,13 +20,14 @@ public class gasStation {
 		for (int i = 0; i < N - 1; i++) {
 			distance.add(Integer.parseInt(st.nextToken()));
 		}
+		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N - 1; i++) {
 			price.add(Integer.parseInt(st.nextToken()));
 		}
 
 		int sum = 0;
-		int power = 0;
-		for (int i = 1; i < N - 1; i++) {
+		for (int i = 0; i < N - 1; i++) {
+			sum += distance.get(i);
 		}
 
 		System.out.println(sum);
