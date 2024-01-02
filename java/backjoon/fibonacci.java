@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// 21-2 10870
 public class fibonacci {
 	static int N;
 	static int sum;
