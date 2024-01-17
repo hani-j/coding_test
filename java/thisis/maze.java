@@ -26,8 +26,8 @@ public class maze {
 				arr[i][j] = Integer.parseInt(split[j]);
  			}
 		}
-
-		System.out.println(BFS(0, 0));
+		BFS(0, 0);
+		System.out.println(arr[N-1][M-1]);
 	}
 
 	private static int BFS(int x, int y) {
@@ -47,7 +47,7 @@ public class maze {
 				if (arr[nx][ny] == 0)
 					continue;
 				if (arr[nx][ny] == 1) {
-					arr[nx][ny] = arr[x][y] + 1;
+					arr[nx][ny] = arr[dir[0]][dir[1]] + 1;
 					queue.add(new int[]{nx, ny});
 				}
 			}
