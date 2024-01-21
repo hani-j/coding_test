@@ -23,16 +23,17 @@ public class tteok {
 		}
 		Arrays.sort(arr);
 		System.out.println(binarySearch(M));
-	} // 9 4 0 7 / 10 15 17 19
+	}
 
 	public static int binarySearch(int n) {
 		int s = 0;
 		int e = arr[N - 1];
 		while (s <= e) {
 			int m = (s + e) / 2;
-			if (sum(m) > n) {
+			int sum = sum(m);
+			if (sum > n) {
 				s = m + 1;
-			} else if (sum(m) < n) {
+			} else if (sum < n) {
 				e = m - 1;
 			} else
 				return m;
