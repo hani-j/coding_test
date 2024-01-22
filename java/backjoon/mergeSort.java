@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// 21-6 2447 **
+// 21-6 2447 **시간초과
 public class mergeSort {
 	static int[] tmp;
 	static int count = 0;
