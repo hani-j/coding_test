@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-import backjoon.primeNumber;
-
 // 09-00 dijkstra heap
 public class dijkstra {
 	static int[] distance;
@@ -41,7 +39,7 @@ public class dijkstra {
 
 		dijkstra(start);
 
-		for (int i = 1, i <= N; i++) {
+		for (int i = 1; i <= N; i++) {
 			if (distance[i] == INF) {
 				System.out.println("INFINITY");
 			}
@@ -69,19 +67,24 @@ public class dijkstra {
 				int c = currentCost + n.cost;
 				if (c < distance[n.dir]) {
 					distance[n.dir] = c;
-					pq.add(new Node(c, n.dir));
+					pq.add(new Node(n.dir, c));
 				}
 			}
 		}
 	}
 
-	static class Node {
+	static class Node implements Comparable<Node>{
 		int dir;
 		int cost;
 
 		Node(int d, int c) {
 			this.dir = d;
 			this.cost = c;
+		}
+
+		@Override
+		public int compareTo(Node o) {
+			return Integer.compare(this.cost, o.cost);
 		}
 	}
 }
