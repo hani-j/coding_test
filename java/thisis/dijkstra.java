@@ -40,7 +40,15 @@ public class dijkstra {
 		}
 
 		dijkstra(start);
-		
+
+		for (int i = 1, i <= N; i++) {
+			if (distance[i] == INF) {
+				System.out.println("INFINITY");
+			}
+			else {
+				System.out.println(distance[i]);
+			}
+		}
 	}
 
 	static public void dijkstra(int start) {
