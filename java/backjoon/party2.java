@@ -10,9 +10,8 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 // dijkstra 1238
-public class party {
-	static List<Node>[] list;
-	static int[] distance;
+public class party2 {
+	
 	static int INF = Integer.MAX_VALUE;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,11 +20,15 @@ public class party {
 		int M = Integer.parseInt(st.nextToken());
 		int X = Integer.parseInt(st.nextToken());
 
-		list = new ArrayList[N + 1];
-		distance = new int[N + 1];
+		List<Node>[] list = new ArrayList[N + 1];
+		List<Node>[] rlist = new ArrayList[N + 1];
+		int[] distance = new int[N + 1];
+		int[] rdistance = new int[N + 1];
 		for (int i = 1; i <= N; i++) {
 			list[i] = new ArrayList<>();
+			rlist[i] = new ArrayList<>();
 			distance[i] = INF;
+			rdistance[i] = INF;
 		}
 
 		for (int i = 0; i < M; i++) {
@@ -34,23 +37,20 @@ public class party {
 			int e = Integer.parseInt(st.nextToken());
 			int t = Integer.parseInt(st.nextToken());
 			list[s].add(new Node(t, e));
+			rlist[e].add(new Node(t, s));
 		}
-		dijkstra(X);
-		int[] result = new int[N + 1];
-		for (int i = 1; i <= N; i++)
-			result[i] = distance[i];
 
+		dijkstra(X, list, distance);
+		dijkstra(X, rlist, rdistance);
+
+		int max = 0;
 		for (int i = 1; i <= N; i++) {
-			for (int j = 1; j <= N; j++) {
-				distance[j] = INF;
-			}
-			dijkstra(i);
-			result[i] += distance[X];
+			max = Math.max(max, distance[i] + rdistance[i]);
 		}
-		System.out.println(Arrays.stream(result).max().getAsInt());
+		System.out.println(max);
 	}
 
-	public static void dijkstra(int start) {
+	public static void dijkstra(int start, List<Node>[] path, int[] distance) {
 		PriorityQueue<Node> pq = new PriorityQueue<>();
 		pq.add(new Node(0, start));
 		distance[start] = 0;
@@ -62,7 +62,7 @@ public class party {
 
 			if (t > distance[n])
 				continue;
-			for (Node node : list[n]) {
+			for (Node node : path[n]) {
 				int time = t + node.t;
 				if (time < distance[node.n]) {
 					distance[node.n] = time;
