@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-import backjoon.prefixSum;
-
 // 10-01 disjoint
 public class team {
 	static int[] parent;
