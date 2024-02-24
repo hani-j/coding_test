@@ -2,13 +2,13 @@ package thisis;
 
 public class muji {
 	public static void main(String[] args) {
-		int[] food_times = {3, 1, 2};
-		int k = 5;
+		int[] food_times = {1, 10, 10};
+		int k = 6;
 
 		int result = 0;
+		k++;
         while (true) {
             int check = 0;
-			// k++;
             for (int i = 0; i < food_times.length; i++) {
                 if (food_times[i] > 0) {
                     check++;
@@ -21,7 +21,6 @@ public class muji {
                 }
             }
             if (result > 0) {
-				result = result == food_times.length ? 1 : result - 1;
                 break;
             }
             if (check == 0) {
