@@ -15,14 +15,13 @@ public class stringCompression {
 			String str = s.substring(0, i);
 			int len = 0;
 			int count = 1;
-			for (int j = 0; j <= s.length(); j += i) {
+			for (int j = i; j <= s.length(); j += i) {
 				int end = j + i < s.length() ? j + i : s.length();
 				if (str.equals(s.substring(j, end))) {
 					count++;
 				} else {
 					if (count > 1) {
 						len += String.valueOf(count).length() + str.length();
-						System.out.println("count : " + count + " count len : " + String.valueOf(count).length() + " str len : " + str.length());
 					} else {
 						len += str.length();
 					}
