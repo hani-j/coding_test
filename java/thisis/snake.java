@@ -38,7 +38,8 @@ public class snake {
 		int[][] dir = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 		int d = 0;
 		int x = 1, y = 1;
-		int ex = 1, ey = 1;
+		Queue<int[]> q = new LinkedList<>();
+		q.add(new int[]{1, 1});
 		for (int i = 0; i < 10000; i++) {
 			time++;
 			if (count.peek().x == i) {
@@ -49,18 +50,19 @@ public class snake {
 			}
 			x += dir[d][0];
 			y += dir[d][1];
-			if (x < 1 || y < 1 || x > 4 || y > 4)
+			System.out.println("time : " + time + " x : " + x + " y : " + y + " d : " + d);
+			if (x < 1 || y < 1 || x > N || y > N)
 				break;
 			if (board[x][y] == 0) {
 				board[x][y] = 1;
-				board[ex][ey] = 0;
-				ex = x;
-				ey = y;
+				int[] tmp = q.poll();
+				board[tmp[0]][tmp[1]] = 0;
 			} else if (board[x][y] == 1) {
 				break;
 			} else {
 				board[x][y] = 1;
 			}
+			q.add(new int[]{x, y});
 		}
 		System.out.println(time);
 	}
