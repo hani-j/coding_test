@@ -3,13 +3,9 @@ package thisis;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
-import javax.management.Query;
 
 // implementation 11
 public class snake {
@@ -42,15 +38,14 @@ public class snake {
 		q.add(new int[]{1, 1});
 		for (int i = 0; i < 10000; i++) {
 			time++;
-			if (count.peek().x == i) {
-				if (count.peek().d.equals("L"))
+			if (!count.isEmpty() && count.peek().x == i) {
+				if (count.poll().d.equals("L"))
 					d = d - 1 < 0 ? 3 : d - 1;
 				else
 					d = d + 1 > 3 ? 0 : d + 1;
 			}
 			x += dir[d][0];
 			y += dir[d][1];
-			System.out.println("time : " + time + " x : " + x + " y : " + y + " d : " + d);
 			if (x < 1 || y < 1 || x > N || y > N)
 				break;
 			if (board[x][y] == 0) {
