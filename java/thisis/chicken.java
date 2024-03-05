@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import backjoon.primeNumber;
-
 // implementation 13
 public class chicken {
 
@@ -19,7 +17,6 @@ public class chicken {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 
-		// int[][] map = new int[N + 1][N + 1];
 		map = new ArrayList<>();
 		List<Node> chiMap = new ArrayList<>();
 		for (int i = 1; i <= N; i++) {
@@ -32,37 +29,41 @@ public class chicken {
 					chiMap.add(new Node(i, j));
 			}
 		}
-		// List<List<Node> list = generateCombi(chiMap);
-		// List<Integer> result = new ArrayList<>();
-		// for (Node n : chiMap) {
-		// 	System.out.println("chicken r : " + n.r + " c : " + n.c);
-		// 	result.add(getDistance(map, n));
-		// }
-		// result.sort(null);
-		// System.out.println(result.get(0));
+		List<List<Node>> list = generateCombi(chiMap, M);
+		int result = 1000;
+		for (List<Node> l : list) {
+			result = Math.min(result, getSum(l));
+		}
+		System.out.println(result);
 	}
 
-	private static <T> List<List<T>> generateCombi(List<T> e) {
+	private static <T> List<List<T>> generateCombi(List<T> e, int n) {
 		List<List<T>> result = new ArrayList<>();
-		backtrack(e, 0, new ArrayList<>(), result);
+		backtrack(e, 0, new ArrayList<>(), result, n);
 		return result;
 	}
 
-	private static <T> void backtrack(List<T> e, int s, List<T> c, List<List<T>> result) {
-		result.add(new ArrayList<>(c));
+	private static <T> void backtrack(List<T> e, int s, List<T> c, List<List<T>> result, int n) {
+		if (c.size() == n) {
+			result.add(new ArrayList<>(c));
+			return;
+		}
 
 		for (int i = s; i < e.size(); i++) {
 			c.add(e.get(i));
-			backtrack(e, i + 1, c, result);
+			backtrack(e, i + 1, c, result, n);
 			c.remove(c.size() - 1);
 		}
 	}
 
-	private static int getSum(List<Node> map, Node chiPosition) {
+	private static int getSum(List<Node> chiPosition) {
 		int sum = 0;
 		for (Node n : map) {
-			sum += Math.abs(n.r - chiPosition.r) + Math.abs(n.c - chiPosition.c);
-			System.out.println((n.r - chiPosition.r) + " " + (n.c - chiPosition.c) + " sum : " + sum);
+			int tmp = 1000;
+			for (Node ch : chiPosition) {
+				tmp = Math.min(tmp, Math.abs(n.r - ch.r) + Math.abs(n.c - ch.c));
+			}
+			sum += tmp;
 		}
 		return sum;
 	}
