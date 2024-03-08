@@ -81,6 +81,7 @@ public class checkWallAns {
 		System.out.println(solution(n, weak, dist));
 	}
 
+	// 다른 방법
 	// class Solution {
 	// 	int N = 0;
 	// 	int ans = Integer.MAX_VALUE;

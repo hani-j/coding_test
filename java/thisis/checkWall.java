@@ -1,68 +1,71 @@
 package thisis;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 // implementation 14
 public class checkWall {
 	public static int solution(int n, int[] weak, int[] dist) {
-        Integer[] d = new Integer[dist.length];
-        for (int i = 0; i < dist.length; i++) {
-            d[i] = dist[i];
-        }
-        Arrays.sort(d, Collections.reverseOrder());
-        
-		int min = 100;
-		for (int i = 0; i < weak.length; i++) {
-			System.out.println("====== getcount : ");
-			min = Math.min(min, getCount(weak, d, i, n));
+        int length = weak.length;
+		int[] newWeak = new int[length * 2];
+		for (int i = 0; i < length; i++) {
+			newWeak[i] = weak[i];
+			newWeak[i + length] = weak[i];
 		}
 
-		if (min == 100)
+		int answer = dist.length + 1;
+		for (int i = 0; i < length; i++) {
+			List<List<Integer>> permutations = generatePermutations(dist);
+			for (List<Integer> friends : permutations) {
+				int count = 1;
+				int position = newWeak[i] + friends.get(count - 1);
+				for (int j = i; j < i + length; j++) {
+					if (position < newWeak[j]) {
+						count++;
+						if (count > dist.length) {
+							break;
+						}
+						position = newWeak[j] + friends.get(count - 1);
+					}
+				}
+				answer = Math.min(answer, count);
+			}
+		}
+		if (answer > dist.length) {
 			return -1;
-        return min;
+		}
+		return answer;
     }
 
-	public static int getCount(int[] weak, Integer[] dist, int i, int n) {
-		int di = 0;
-		int d = dist[di];
-		int end;
-		int weakDis;
-		for (int j = 0; j < weak.length; j++) {
-			end = i + 1 >= weak.length ? 0 : i + 1;
-			System.out.println("end : " + end + " weak[i] " + weak[i] + " weak[0] " + weak[0]);
-			if (end == 0 && weak[i] > n / 2)
-				weakDis = n - weak[i] + weak[0];
-			else
-				weakDis = Math.abs(weak[end] - weak[i]);
-			if (di == dist.length || dist[di] < weakDis)
-				return 100;
-			d = dist[di];
-			System.out.println("i : " + i + " d : " + d + " weakDis : " + weakDis);
-			while (d >= weakDis) {
-				System.out.println("if i : " + i + " di : " + di + " d : " + d + " weakDistance : " + weakDis);
-				d -= weakDis;
-				i = i + 1 >= weak.length ? 0 : i + 1; 
-				end = i + 1 >= weak.length ? 0 : i + 1;
-				if (end == 0 && weak[i] > n / 2)
-					weakDis = n - weak[i] + weak[0];
-				else
-					weakDis = Math.abs(weak[end] - weak[i]);
-				j++;
-				if (j >= weak.length)
-					break;
-			}
-			di++;
-			i = i + 1 >= weak.length ? 0 : i + 1;
-			j++;
+	private static List<List<Integer>> generatePermutations(int[] list) {
+		List<List<Integer>> result = new ArrayList<>();
+		boolean[] used = new boolean[list.length];
+		backtrack(list, used, new ArrayList<>(), result);
+		return result;
+	}
+
+	private static void backtrack(int[] list, boolean[] used, List<Integer> current, List<List<Integer>> result) {
+		if (current.size() == list.length) {
+			result.add(new ArrayList<>(current));
+			System.out.println();
+			return;
 		}
-		return di;
+
+		for (int i = 0; i < list.length; i++) {
+			if (!used[i]) {
+				used[i] = true;
+				current.add(list[i]);
+				backtrack(list, used, current, result);
+				used[i] = false;
+				current.remove(current.size() - 1);
+			}
+		}
 	}
 
 	public static void main(String[] args) {
-		// int n = 12;
-		// int[] weak = {1, 5, 6, 10};
-		// int[] dist = {1, 2, 3, 4};
+		int n = 12;
+		int[] weak = {1, 5, 6, 10};
+		int[] dist = {1, 2, 3, 4};
 
 		// int n = 12;
 		// int[] weak = {1, 3, 4, 9, 10};
@@ -72,9 +75,9 @@ public class checkWall {
 		// int[] weak = {1};
 		// int[] dist = {6};
 
-		int n = 30;
-		int[] weak = {0, 3, 11, 21};
-		int[] dist = {10, 4};
+		// int n = 30;
+		// int[] weak = {0, 3, 11, 21};
+		// int[] dist = {10, 4};
 
 		System.out.println(solution(n, weak, dist));
 	}
