@@ -37,10 +37,18 @@ public class avoid {
 			for (int j = 0; j < N; j++) {
 				if (tmp[i][j].equals("T")) {
 					for (int k = 0; k < 4; k++) {
-						System.out.println(k);
-						for (int nx = i, ny = j; nx < N && nx >= 0 && ny < N && ny >= 0; nx += dx[k], ny += dy[k]) {
-							if (tmp[nx][ny].equals("S"))
+						int nx = i;
+						int ny = j;
+						while (true) {
+							if (nx >= N || nx < 0 || ny >= N || ny < 0)
+								break;
+							if (tmp[nx][ny].equals("O"))
+								break;
+							if (tmp[nx][ny].equals("S")) {
 								return false;
+							}
+							nx += dx[k];
+							ny += dy[k];
 						}
 					}
 				}
@@ -74,3 +82,10 @@ public class avoid {
 		}
 	}
 }
+
+// 5
+// X S X X T
+// T X S X X
+// X X X X X
+// X T X X X
+// X X T X X
