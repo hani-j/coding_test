@@ -1,22 +1,24 @@
 package thisis;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class failure {
 	public static void main(String[] args) {
-		int N = 5;
-		int[] stages = {2,1,2,6,2,4,3,3};
+		// int N = 5;
+		// int[] stages = {2,1,2,6,2,4,3,3};
+		int N = 4;
+		int[] stages = {4,4,4,4,4};
 		int[] result = solution(N, stages);
 		for (int r : result)
-		System.out.println(result);
+			System.out.println(r);
 	}
 
 	public static int[] solution(int N, int[] stages) {
-		List<Node> answer = new ArrayList<>();
+		int[] answer = new int[N];
+		List<Node> list = new ArrayList<>();
 		int len = stages.length;
-		for (int i = 1; i <= N + 1; i++) {
+		for (int i = 1; i <= N; i++) {
 			int count = 0;
 			for (int s : stages) {
 				if (i == s)
@@ -27,9 +29,13 @@ public class failure {
 			if (len == 0)
 				fail = 0;
 			else
-				fail = count / len;
-			answer.add(new Node(i, fail));
-			
+				fail = (float) count / len;
+			list.add(new Node(i, fail));
+			len -= count;
+		}
+		list.sort(null);
+		for (int i = 0; i < N; i++) {
+			answer[i] = list.get(i).i;
 		}
         return answer;
     }
@@ -47,7 +53,7 @@ public class failure {
 		public int compareTo(Node n) {
 			if (n.f == this.f)
 				return this.i - n.i;
-			return this.f - n.f;
+			return Float.compare(n.f, this.f);
 		}
 	}
 }
