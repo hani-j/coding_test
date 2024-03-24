@@ -1,7 +1,6 @@
 package thisis;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class lyrics {
@@ -31,7 +30,7 @@ public class lyrics {
 
 		for (int i = 0; i < 10001; i++) {
 			arr[i].sort(null);
-			arr[i].sort(Collections.reverseOrder());
+			r_arr[i].sort(null);
 		}
 
 		for (String q : queries) {
@@ -60,10 +59,10 @@ public class lyrics {
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (list.get(mid).compareTo(target) < 0) {
-                left = mid + 1;
+				left = mid + 1;
             } else {
                 right = mid;
-            }
+			}
         }
         return left;
     }
@@ -74,11 +73,11 @@ public class lyrics {
 
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (list.get(mid).compareTo(target) <= 0) {
+            if (list.get(mid).compareTo(target) > 0) {
+				right = mid;
+			} else {
                 left = mid + 1;
-            } else {
-                right = mid;
-            }
+			}
         }
         return left;
     }
