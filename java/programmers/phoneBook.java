@@ -1,16 +1,10 @@
 package programmers;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class phoneBook {
 
     static public boolean solution(String[] phone_book) {
-        boolean answer = true;
-        HashMap<String, Boolean> map = new HashMap<>();
-        for (String number : phone_book) {
-            map.put(number, true);
-        }
         Arrays.sort(phone_book);
 
         for (int i = 0; i < phone_book.length - 1; i++) {
