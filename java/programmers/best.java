@@ -14,9 +14,7 @@ class best {
 	}
 
     static public int[] solution(String[] genres, int[] plays) {
-        int len = genres.length / 2 == 0 ? genres.length : genres.length - 1;
-        int[] answer = new int[len];
-        Map<String, Integer> map = new TreeMap<>(Collections.reverseOrder());
+        Map<String, Integer> map = new HashMap<>();
         Map<String, List<Node>> list = new HashMap<>(); 
         
         for (int i = 0; i < genres.length; i++) {
@@ -32,20 +30,27 @@ class best {
             }
         }
         
+        List<String> sortedGenres = new ArrayList<>(map.keySet());
+        sortedGenres.sort((a, b) -> map.get(b).compareTo(map.get(a)));
+        List<Integer> ans = new ArrayList<>();
         int idx = 0;
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            String key = entry.getKey();
-            List<Node> nodes = list.get(key);
+        for (String genre : sortedGenres) {
+            List<Node> nodes = list.get(genre);
             nodes.sort(null);
+            int count = 0;
             for (Node n : nodes) {
-                answer[idx] = n.idx;
-                idx++;
-                if (idx == len)
+                ans.add(n.idx);
+                count++;
+                if (count >= 2)
                     break;
             }
-            if (idx == len)
-                break;
         }
+        int[] answer = new int[ans.size()];
+        idx = 0;
+        for (int i : ans) {
+            answer[idx++] = i;
+        }
+        
         return answer;
     }
     
@@ -61,7 +66,7 @@ class best {
         @Override
         public int compareTo(Node n) {
             if (this.plays == n.plays)
-                return Integer.compare(n.idx, this.idx);
+                return Integer.compare(this.idx, n.idx);
             return Integer.compare(n.plays, this.plays);
         }
     }
