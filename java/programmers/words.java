@@ -31,7 +31,6 @@ public class words {
                 tNum = i;
             if (check(begin, words[i])) {
                 start.add(new Node(words[i], i));
-                System.out.println(words[i] + " " + i);
             }
         }
         for (Node n : start) {
