@@ -19,16 +19,12 @@ public class Eval {
             if (score[0] >= max) {
                 max = score[0];
                 sums.add(score[0] + score[1]);
-                if (Arrays.equals(score, wan) && score[0] < max) {
-                    return -1;
-                }
             } else if (Arrays.equals(score, wan)) {
                 return -1;
             }
         }
 
 		sums.add(wanS);
-
         Collections.sort(sums, Collections.reverseOrder());
 
         int rank = 1;
@@ -43,7 +39,7 @@ public class Eval {
     }
 
 	public static void main(String[] args) {
-		int[][] scores = {{2,2},{1,4},{3,2},{3,2},{2,1}};
+		int[][] scores = {{2, 2}, {1, 4}, {3, 2}, {3, 2}, {2, 1}};
 		System.out.println(solution(scores));
 	}
 }
