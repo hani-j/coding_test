@@ -43,6 +43,9 @@ public class Spot {
 				}
 			}
 		}
-		System.out.println(count[M - 1][N - 1]);
+		if (count[M - 1][N - 1] == 10001)
+			System.out.println("0");
+		else
+			System.out.println(count[M - 1][N - 1]);
 	}
 }
